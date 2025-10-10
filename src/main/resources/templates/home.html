@@ -1,0 +1,74 @@
+<!doctype html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>refundMe</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+</head>
+
+<body class="bg-light">
+
+  <!-- ✅ Navbar -->
+  <div th:insert="fragments/navbar :: nav"></div>
+
+  <!-- ✅ Hero Section -->
+  <section class="py-5 text-center bg-body">
+    <div class="container">
+      <h1 class="fw-bold">Welcome to refundMe</h1>
+      <p class="lead">Manage your reimbursements easily and securely.</p>
+      <a href="/newRequest" class="btn btn-primary btn-lg mt-2">Create New Request</a>
+    </div>
+  </section>
+
+  <!-- ✅ Features Section -->
+  <div class="container my-5">
+    <div class="row g-4">
+      
+      <div class="col-md-4">
+        <div class="card h-100 text-center">
+          <div class="card-body">
+            <i class="bi bi-file-earmark-plus display-5 text-primary"></i>
+            <h5 class="card-title mt-3">New Request</h5>
+            <p class="card-text">Submit your reimbursement quickly.</p>
+            <a href="/newRequest" class="btn btn-outline-primary">Start</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="card h-100 text-center">
+          <div class="card-body">
+            <i class="bi bi-list-check display-5 text-success"></i>
+            <h5 class="card-title mt-3">My Requests</h5>
+            <p class="card-text">Check the status of your submissions.</p>
+            <a href="/myRequests" class="btn btn-outline-success">View</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="card h-100 text-center">
+          <div class="card-body">
+            <i class="bi bi-envelope-paper display-5 text-info"></i>
+            <h5 class="card-title mt-3">Contact</h5>
+            <p class="card-text">Need help? Contact our support team.</p>
+            <a href="/contact" class="btn btn-outline-info">Contact</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ✅ Footer -->
+  <footer class="bg-primary text-white text-center py-3 mt-5">
+    <div class="container">
+      <p class="mb-0">&copy; 2025 refundMe — All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!doctype html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reimbursement Details – refundMe</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body style="font-family: Arial, sans-serif; background-color: #f9fafb;">
+
+  <!-- ✅ Navbar -->
+  <div th:insert="fragments/navbar :: nav"></div>
+
+  <!-- ✅ Main Container -->
+  <div class="container py-5">
+
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10">
+        <div class="card shadow-sm border-0">
+          
+          <!-- Header -->
+          <div class="card-header text-white text-center fw-bold" style="background-color: #2563eb;">
+            New Reimbursement Request
+          </div>
+
+          <!-- Body -->
+          <div class="card-body">
+            <p class="text-muted">
+              A new reimbursement request has been submitted with the following details:
+            </p>
+
+            <table class="table table-borderless align-middle mb-4">
+              <tbody>
+                <tr>
+                  <th scope="row" class="text-secondary" style="width: 180px;">Name:</th>
+                  <td th:text="${reimbursement.userName} + ' ' + ${reimbursement.userLastName}"></td>
+                </tr>
+                <tr>
+                  <th scope="row" class="text-secondary">Email:</th>
+                  <td th:text="${reimbursement.userEmail}"></td>
+                </tr>
+                <tr>
+                  <th scope="row" class="text-secondary">Company Email:</th>
+                  <td th:text="${reimbursement.companyEmail}"></td>
+                </tr>
+                <tr>
+                  <th scope="row" class="text-secondary">Requested Amount:</th>
+                  <td th:text="'$' + ${reimbursement.requestedAmount}"></td>
+                </tr>
+                <tr>
+                  <th scope="row" class="text-secondary">Message:</th>
+                  <td th:text="${reimbursement.message}"></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="alert alert-info text-center" role="alert">
+              Please review this request and take the necessary action.
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <div class="card-footer text-center text-muted small bg-light">
+            &copy; 2025 WiseCore IT – refundMe
+          </div>
+
+        </div>
+
+        <!-- ✅ Button Section -->
+        <div class="text-center mt-4">
+          <a href="/" class="btn btn-primary btn-lg px-4">
+            <i class="bi bi-house-door me-1"></i> Home
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+</body>
+</html>
