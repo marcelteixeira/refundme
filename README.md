@@ -126,6 +126,46 @@ This project demonstrates:
 
 ---
 
+## 🧭 Development Progress
+
+Since the first commit, **refundMe** has evolved from a simple reimbursement submission form into a modular, scalable web platform with account management and a refined visual identity.
+
+### 🧩 Architecture Evolution
+- Introduced a **multi-entity structure** with `Account`, `User`, `Company`, and `Reimbursement` models  
+- Implemented **DTO classes (AccountDTO)** to safely transfer data between the backend and the front-end forms  
+- Separated application logic into **dedicated service layers** (`UserService`, `CompanyService`, `AccountService`, `ReimbursementService`)  
+- Adopted **Lombok annotations (`@Data`, `@Getter`, `@Setter`)** to simplify boilerplate code  
+
+### 💻 Frontend & Theme
+- Migrated from raw Bootstrap to a **custom visual identity — “refundMe theme”**  
+- Implemented a modern **Login/Register page** with animated tabs and a toggle switch between `User` and `Company`  
+- Designed a cohesive **Home Page** with reusable components and a dynamic navbar  
+- Moved toward **Thymeleaf fragments** for modular UI management (navbar, footer, styles)
+
+### 🛠️ Backend Enhancements
+- Established **one-to-one JPA relationships** between `Account` and its child entities (`User`, `Company`)  
+- Added automatic **UUID generation** for entity IDs  
+- Created initial **Account registration flow** that distinguishes between company and individual users  
+- Improved **controller logic** for login, registration, and reimbursement persistence  
+
+### 🎨 Identity & Branding
+- Designed a new logo and favicon with the project colors (deep blue `#2563EB` and cyan `#38BDF8`)  
+- Unified UI components under the **refundMe brand**, ensuring consistent typography and visual hierarchy  
+
+### 📚 Learning Outcomes
+This phase introduced key Spring Boot development practices:
+- Dependency Injection with `@Autowired`
+- MVC integration with Thymeleaf templates
+- DTO usage to decouple frontend models from entities
+- Modular CSS & JavaScript separation
+- Project cleanup and debugging via `Run Configurations`
+
+---
+
+🧠 *Next steps:* Implement user authentication with JWT, persist session data securely, and expand the reimbursement workflow for approvals and history tracking.
+
+---
+
 ## 🧩 Future Enhancements
 
 🔹 Add login/authentication for employees and HR staff  

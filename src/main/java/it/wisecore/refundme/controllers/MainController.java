@@ -1,6 +1,8 @@
 package it.wisecore.refundme.controllers;
 
 import java.sql.SQLException;
+import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,9 +12,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import it.wisecore.refundme.dto.AccountDTO;
+import it.wisecore.refundme.entities.Account;
+import it.wisecore.refundme.entities.Company;
 import it.wisecore.refundme.entities.Reimbursement;
 import it.wisecore.refundme.entities.User;
+import it.wisecore.refundme.repositories.AccountRepository;
+import it.wisecore.refundme.services.CompanyService;
 import it.wisecore.refundme.services.EmailService;
+import it.wisecore.refundme.services.ReimbursementService;
+import it.wisecore.refundme.services.UserService;
 
 @Controller
 public class MainController {
@@ -33,11 +42,11 @@ public class MainController {
 	
 	
 	
-	
+	@Autowired private ReimbursementService reimbursementServices;
 	@GetMapping("/newRequest/view")
-	public String newRequestView(@RequestParam(name="reimbursementId", required=false) Integer reimbursementId, Model model) throws SQLException {
+	public String newRequestView(@RequestParam(name="reimbursementId", required=false) UUID reimbursementId, Model model) throws SQLException {
 		
-		Reimbursement reimbursement = new Reimbursement(reimbursementId);
+		Reimbursement reimbursement = reimbursementServices.findById(reimbursementId);
 		model.addAttribute("reimbursement", reimbursement);
 		return "requestView";
 	}
@@ -45,29 +54,34 @@ public class MainController {
 	
 	
 	@GetMapping("/login")
-	public String login(Model model) {
-		User user = new User();
-		model.addAttribute("user", user);
+	public String showLoginPage(Model model) {
+		//AccountDTO account = new AccountDTO();
+		model.addAttribute("account", new AccountDTO());
 		return "login";
 	}
 	
+	@Autowired private UserService userService;
 	@PostMapping("/user/save")
-	public String submitForm(Model model, @ModelAttribute("user") User user) throws SQLException {
-		model.addAttribute("user", user);
-		user.userCreate();
+	public String newUserProcess(Model model, 
+			@ModelAttribute("account")AccountDTO accountDTO) throws SQLException {
+		model.addAttribute("account", accountDTO);
+		
+		
+		
 		
 		return "home";
 	}
 	
 	@Autowired private EmailService emailService;
+	@Autowired private ReimbursementService rs;
 	@PostMapping("/newRequest/save")
 	public String newRequestSave(Model model, @ModelAttribute("reimbursement") Reimbursement reimbursement) throws SQLException {
+		Reimbursement saved = rs.save(reimbursement);
+		System.out.println(saved.getId());
+		//emailService.sendEmail(reimbursement);
+	
 		
-		int id = reimbursement.create();
-		emailService.sendEmail(reimbursement);
-		
-		
-		return "redirect:/newRequest/view?reimbursementId=" + id;
+		return "redirect:/newRequest/view?reimbursementId=" + saved.getId();
 	}
 	
 	

@@ -1,6 +1,7 @@
 package it.wisecore.refundme.entities;
 
 import java.util.UUID;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,52 +9,24 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import lombok.Data;
 
 @Entity
-public class User {
+@Data
+public class Company {
+	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private UUID id;
-	
 	@Column(nullable = false)
 	private String name;
-	
-	@Column(nullable = false)
-	private String lastName;
-	
-	
-	
+
 	@OneToOne
 	@JoinColumn(name = "account_id")
 	private Account account;
 	
 	
-	public UUID getId() {
-		return id;
-	}
-	public void setId(UUID id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public Account getAccount() {
-		return account;
-	}
-	public void setAccount(Account account) {
-		this.account = account;
-	}
 
 	
 }
